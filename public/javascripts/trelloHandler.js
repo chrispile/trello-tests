@@ -10,6 +10,10 @@ var authenticationFailure = function() {
   console.log('Failed authentication');
 };
 
+let hostName = window.location.hostname;
+if (hostName === 'localhost') hostName = `${hostName}:3000`;
+console.log(hostName);
+
 const $1 = document.querySelector.bind(document);
 const boardsDom = $1('#boards');
 
@@ -31,7 +35,7 @@ authbtn.addEventListener('click', function(e) {
 function connectWebhook(id){
   $.post(`https://api.trello.com/1/tokens/${Trello.token()}/webhooks/?key=6744fbc46bafd8abfa31d3edf4ecf59c`, {
     description: "My first webhook",
-    callbackURL: "http://4ea8644b.ngrok.io/trelloCallback",
+    callbackURL: 'https://' + hostname + '/trelloCallback',
     idModel: id
   })
 }
