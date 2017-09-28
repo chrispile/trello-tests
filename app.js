@@ -5,7 +5,6 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-
 var app = express();
 
 // view engine setup
@@ -21,9 +20,11 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 const index = require('./routes/index');
+const trello = require('./routes/trello');
 const trelloCallback = require('./routes/trelloCallback');
 
 app.use('/', index);
+app.use('/trello', trello);
 app.use('/trelloCallback', trelloCallback);
 
 // catch 404 and forward to error handler
