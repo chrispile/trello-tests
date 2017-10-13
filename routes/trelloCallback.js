@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var handler = require('../WebhookHandler');
 
 router.get('/', function(req, res, next) {
   res.send('hi');
@@ -7,10 +8,7 @@ router.get('/', function(req, res, next) {
 
 router.post('/', function(req, res, next) {
   const action = req.body.action;
-  // if(action.type === 'commentCard') {
-  //   console.log(action);
-  // }
-  console.log(action);
+  console.log(handler(action));
   res.end();
 });
 

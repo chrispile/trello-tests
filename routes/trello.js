@@ -2,12 +2,12 @@ var express = require('express');
 var request = require('request');
 var router = express.Router();
 
-const API_KEY = "1a0ad5b2cd7f611bc17fde490ebb6fc8";
-const TOKEN = "f92f74e3497e65aee207a0e60538eb558717d20cf08a0b8f6a4943338c471745";
+const API_KEY = "e0cc36f6242b224670b1fd34f84ad3a7";
+const TOKEN = "07caf9ef1fc1d0f49efc25726e14c95fd8bce098f516cb7dbd705045088c4208";
 
 router.post('/webhook', function(req, res, next) {
   var url = "https://api.trello.com/1/tokens/" + TOKEN + '/webhooks/?key=' + API_KEY;
-  var callbackURL = 'http://8c164596.ngrok.io/trelloCallback'
+  var callbackURL = 'http://c480c6c8.ngrok.io/trelloCallback' //CHANGE THIS
   var form = {
     description: 'My first webhook',
     callbackURL: callbackURL,
@@ -25,8 +25,8 @@ router.post('/webhook', function(req, res, next) {
         res.json({error: res2});
       }
     }
-  })
-})
+  });
+});
 
 router.get('/boards', function(req, res, next) {
   var url = "https://api.trello.com/1/members/my/boards?fields=name,url&closed=true&key=" + API_KEY + "&token=" + TOKEN;
@@ -63,5 +63,6 @@ router.get('/checklist/:cid', function(req, res, next) {
   })
 })
 
+router.put('/')
 
 module.exports = router;
